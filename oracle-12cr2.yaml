@@ -259,7 +259,7 @@
       command: /opt/app/oracle/product/12.2.0.1/dbhome_1/root.sh
       become_user: root
 
-     - name: Creacion base de datos oracle con for
+    - name: Creacion base de datos oracle con for
       shell: |
         for i in `hostname -s`;   do
            /opt/app/oracle/product/12.2.0.1/dbhome_1/bin/dbca -silent -createDatabase -templateName General_Purpose.dbc -gdbName $i -sid $i -sysPassword sys -systemPassword sys -emConfiguration NONE -datafileDestination /opt/app/oracle/oradata 
@@ -267,7 +267,6 @@
       become: yes
       become_user: oracle
       register: result
-    - debug: msg="{{ result.stdout }}"
       args:
         executable: /bin/bash
 
